@@ -16,7 +16,7 @@ void operacao(char c){
     }
     if(c=='*'){
         res=n1*n2;
-        printf("Resultado: %f - %f = %f\n\n", n1, n2, res);
+        printf("Resultado: %f * %f = %f\n\n", n1, n2, res);
 
     }
     if(c=='/'){
@@ -24,7 +24,7 @@ void operacao(char c){
             printf("Erro: Divisao por zero nao e permitida\n\n");
         }else{
         res=n1/n2;
-        printf("Resultado: %f - %f = %f\n\n", n1, n2, res);
+        printf("Resultado: %f / %f = %f\n\n", n1, n2, res);
         }
     }
 }
@@ -49,7 +49,31 @@ int main(){
                 printf("\nErro: entrada nao numerica, por favor, digite um numero\n\n");
                 continue;
         }
-        if(esc==1){
+        // Estrutura com switch
+        
+        switch(esc){
+            case 1:
+                operacao('+');
+                break;
+            case 2:
+                operacao('-');
+                break;
+            case 3:
+                operacao('*');
+                break;
+            case 4:
+                operacao('/');
+                break;
+            case 5:
+                printf("\nAdeus!\n");
+                break;
+            default:
+                printf("\nErro: opcao invalida, por favor digite uma opcao valida\n\n");
+                continue;
+        }
+        // Estrutura com if
+
+        /*if(esc==1){
             operacao('+');
         }
         if(esc==2){
@@ -68,7 +92,7 @@ int main(){
         if(esc<1 || esc>5){
             printf("\nErro: opcao invalida, por favor digite uma opcao valida\n\n");
             continue;
-        }
+        }*/
         for(j=0; j<256; j++){
         printf("Deseja realizar outra operacao? (s/n):");
         scanf(" %c", &caractere);
