@@ -16,7 +16,7 @@ void operacao(char c){
     }
     if(c=='*'){
         res=n1*n2;
-        printf("Resultado: %f - %f = %f\n\n", n1, n2, res);
+        printf("Resultado: %f * %f = %f\n\n", n1, n2, res);
 
     }
     if(c=='/'){
@@ -24,7 +24,7 @@ void operacao(char c){
             printf("Erro: Divisao por zero nao e permitida\n\n");
         }else{
         res=n1/n2;
-        printf("Resultado: %f - %f = %f\n\n", n1, n2, res);
+        printf("Resultado: %f / %f = %f\n\n", n1, n2, res);
         }
     }
 }
