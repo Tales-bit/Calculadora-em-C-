@@ -69,13 +69,14 @@ int main(){
                 break;
             case 5:
                 cout << endl << "Adeus!" << endl;
+                return 0;
                 break;
             default:
                 cout << endl << "Erro: opcao invalida, por favor digite uma opacao valida" << endl << endl;
                 continue;
         }
     
-
+        
         for(j=0; j<256; j++){
             cout << "Deseja realizar outra operacao? (s/n):";
             cin >> caractere;
