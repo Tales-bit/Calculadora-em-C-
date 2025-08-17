@@ -1,30 +1,30 @@
-#include<stdio.h>
+#include<iostream>
+#include<limits> // O uso dessa biblioteca será explicado depois
 
+using namespace std;
+
+// Abaixo é definido a função operacao
 void operacao(char c){
-    float n1,n2,res;
-    printf("\nDigite o primeiro numero: ");
-    scanf("%f", &n1);
-    printf("Digite o segundo numero: ");
-    scanf("%f", &n2);
+    double n1,n2;
+    cout << endl << "Digite o primeiro numero: ";
+    cin >> n1;
+    cout << "Digite o segundo numero: ";
+    cin >> n2;
     if(c=='+'){
-        res=n1+n2;
-        printf("Resultado: %f + %f = %f\n\n", n1, n2, res);
+        cout << "Resultado: " << n1 << "+" << n2 << "=" << n1+n2 << endl << endl;
     }
     if(c=='-'){
-        res=n1-n2;
-        printf("Resultado: %f - %f = %f\n\n", n1, n2, res);
+        cout << "Resultado: " << n1 << "-" << n2 << "=" << n1-n2 << endl << endl;
     }
     if(c=='*'){
-        res=n1*n2;
-        printf("Resultado: %f * %f = %f\n\n", n1, n2, res);
-
+        cout << "Resultado: " << n1 << "*" << n2 << "=" << n1*n2 << endl << endl;
     }
     if(c=='/'){
+        // Não é permitido divisão por zero
         if(n2==0){
             printf("Erro: Divisao por zero nao e permitida\n\n");
         }else{
-        res=n1/n2;
-        printf("Resultado: %f / %f = %f\n\n", n1, n2, res);
+        cout << "Resultado: " << n1 << "/" << n2 << "=" << n1/n2 << endl << endl;
         }
     }
 }
@@ -32,25 +32,28 @@ void operacao(char c){
 int main(){
     int esc, i, j;
     char caractere;
+    // Tudo a seguir está dentro de um loop para permitir o usuario realizar outra operação sem abrir novamente o programa
     for(i=0; i<256; i++){
+        //Imprime o terminal
+        cout << "===============================" << endl;
+        cout << "   Calculadora Simples" << endl;
+        cout << "===============================" << endl;
+        cout << "Selecione uma operacao:" << endl;
+        cout << "1. Adicao" << endl;
+        cout << "2. Subtracao" << endl;
+        cout << "3. Multiplicacao" << endl;
+        cout << "4. Divisao" << endl;
+        cout << "5. Sair" << endl;
+        cout << "Opcao: ";
 
-        printf("===============================\n");
-        printf("   Calculadora Simples\n");
-        printf("===============================\n");
-        printf("Selecione uma operacao:\n");
-        printf("1. Adicao\n");
-        printf("2. Subtracao\n");
-        printf("3. Multiplicacao\n");
-        printf("4. Divisao\n");
-        printf("5. Sair\n");
-        printf("Opcao: ");
-        if(scanf("%d", &esc)!=1){
-            while(getchar()!= '\n');
-                printf("\nErro: entrada nao numerica, por favor, digite um numero\n\n");
-                continue;
+        // Essa parte a seguir é o motivo do uso daquela biblioteca
+        if (!(cin >> esc)) {
+            cin.clear(); // limpa o estado de erro do cin
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // descarta até o fim da linha
+            cout << "\nErro: entrada nao numerica, por favor, digite um numero\n\n";
+            continue;
         }
-        // Estrutura com switch
-        
+
         switch(esc){
             case 1:
                 operacao('+');
@@ -65,47 +68,27 @@ int main(){
                 operacao('/');
                 break;
             case 5:
-                printf("\nAdeus!\n");
+                cout << endl << "Adeus!" << endl;
                 break;
             default:
-                printf("\nErro: opcao invalida, por favor digite uma opcao valida\n\n");
+                cout << endl << "Erro: opcao invalida, por favor digite uma opacao valida" << endl << endl;
                 continue;
         }
-        // Estrutura com if
+    
 
-        /*if(esc==1){
-            operacao('+');
-        }
-        if(esc==2){
-            operacao('-');
-        }
-        if(esc==3){
-            operacao('*');
-        }
-        if(esc==4){
-            operacao('/');
-        }
-        if(esc==5){
-            printf("\nAdeus!\n");
-            break;
-        }
-        if(esc<1 || esc>5){
-            printf("\nErro: opcao invalida, por favor digite uma opcao valida\n\n");
-            continue;
-        }*/
         for(j=0; j<256; j++){
-        printf("Deseja realizar outra operacao? (s/n):");
-        scanf(" %c", &caractere);
+            cout << "Deseja realizar outra operacao? (s/n):";
+            cin >> caractere;
         if(caractere=='s' || caractere=='S'){
-            printf("\n\n\n");
+            cout <<endl << endl << endl;
             break;
         }
         if(caractere=='n' || caractere=='N'){
-            printf("Obrigado por usar a calculadora! Ate a proxima.\n");
+            cout << "Obrigado por usar a calculadora! Ate a proxima." << endl;
             i=256;
             break;
         }
-        printf("Respota invalida. Por favor, digite 's' para sim ou 'n' para nao\n\n");
+        cout << "Respota invalida. Por favor, digite 's' para sim ou 'n' para nao" << endl << endl;
         }
     }
 }
